@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+	var body = $("body");
+	var backToTop = $("#back-to-top");
         // pre-loader
         var items = new Array();
         var errors = new Array();
@@ -112,7 +113,8 @@ $(document).ready(function() {
         });
 
         function parallaxScroll(){
-
+	        var body = $("body");
+	        var backToTop = $("#back-to-top");
             var scrolled = $(window).scrollTop();
 
             var down = true;
@@ -120,21 +122,21 @@ $(document).ready(function() {
                 down = false;
             }
 
-            var pinkShips = $('#pink-ships');
-            var pinkShipsPos = pinkShips.position();
-
-            var blueShips = $('#blue-ships');
-            var blueShipsPos = blueShips.position();
+            //var pinkShips = $('#pink-ships');
+            //var pinkShipsPos = pinkShips.position();
+            //
+            //var blueShips = $('#blue-ships');
+            //var blueShipsPos = blueShips.position();
 
             $('#bg-star-field-fixed').css('top',(0+((scrolled)*.50))+'px');
             $('#home').css('top',(0-(scrolled*.64))+'px');
             $('#about').css('top',(0-(scrolled*.64))+'px');
-            $('#small-pink-ship-wrap').css('top',(-833+(scrolled*.80))+'px');
+            //$('#small-pink-ship-wrap').css('top',(-833+(scrolled*.80))+'px');
             $('#services').css('top',(0-(scrolled*.64))+'px');
             $('#team').css('top',(0-(scrolled*.64))+'px');
             $('#work').css('top',(0-(scrolled*.64))+'px');
             $('#contact').css('top',(0-(scrolled*.65))+'px');
-            $('#footer').css('top',(775-(scrolled*.60))+'px');
+            //$('#footer').css('top',(775-(scrolled*.60))+'px');
 
             // 1. get the width it starts from
             // 2. get the current scrolltop around 470
@@ -146,16 +148,17 @@ $(document).ready(function() {
             } else if(shieldPct < 0 ) {
                 shieldPct = 0;
             }
-
-            $('#ui-message-shield-prototype .ui-bar .fill').css('width', shieldPct + '%');
-            $('#ui-message-shield-prototype .shield-pct').html(shieldPct + '<span class="alt-color">%</span>');
-            $('#small-pink-ship .ship-shield').fadeTo(0, (shieldPct/100));
-            $('#pink-ships').css({'top' : (20-(scrolled*0.25))+'px','left' : (0+(scrolled*0.95))+'px'});
+            //
+            //$('#ui-message-shield-prototype .ui-bar .fill').css('width', shieldPct + '%');
+            //$('#ui-message-shield-prototype .shield-pct').html(shieldPct + '<span class="alt-color">%</span>');
+            //$('#small-pink-ship .ship-shield').fadeTo(0, (shieldPct/100));
+            //$('#pink-ships').css({'top' : (20-(scrolled*0.25))+'px','left' : (0+(scrolled*0.95))+'px'});
 
             // || (!body.hasClass("mobile-width") && window.pageYOffset >=700 )
             if( (scrolled >= 700 && backToTop.hasClass("off") && !body.hasClass("mobile-width") ) )
             {
                 // Show It
+	            console.log(123);
                 backToTop.show();
                 TweenMax.to(backToTop, 0.2, {css:{opacity: 1, right: 60, display: 'block', position: 'fixed'}, ease:Power0.easeInOut, repeat:0});
                 backToTop.removeClass("off");
@@ -163,7 +166,10 @@ $(document).ready(function() {
 
             if (scrolled <= 700 && !backToTop.hasClass("off") && !body.hasClass("mobile-width") ) {
                  // Hide It
-                TweenMax.to(backToTop, 0.2, {css:{opacity: 1, right: -60}, ease:Power0.easeInOut, repeat:0, onComplete:hideBackToTop});
+
+	            TweenMax.to(backToTop, 0.2, {css:{opacity: 1, right: -60}, ease:Power0.easeInOut, repeat:0});
+	            $("#back-to-top").addClass("off");
+	            $("#back-to-top").hide();
             }
 
             previousScroll = scrolled;
@@ -176,28 +182,28 @@ $(document).ready(function() {
         }
 
         // thumb Overlay
-        $('.medium-thumb').hover(
-            function() {
-
-                $('.thumb-overlay', this).show();
-
-            },
-            function() {
-                $('.thumb-overlay', this).hide();
-            }
-        );
+        //$('.medium-thumb').hover(
+        //    function() {
+        //
+        //        $('.thumb-overlay', this).show();
+        //
+        //    },
+        //    function() {
+        //        $('.thumb-overlay', this).hide();
+        //    }
+        //);
 
          // handle service item clicks
-        $('#service-venn-diagram .venn-label').hover(
-            function() {
-                var label = $(this).attr("id");
-                $('#' + label + '-label').stop(true, true).show("slow");
-            },
-            function() {
-                var label = $(this).attr("id");
-                $('#' + label + '-label').stop(true, true).hide("slow");
-            }
-        );
+        //$('#service-venn-diagram .venn-label').hover(
+        //    function() {
+        //        var label = $(this).attr("id");
+        //        $('#' + label + '-label').stop(true, true).show("slow");
+        //    },
+        //    function() {
+        //        var label = $(this).attr("id");
+        //        $('#' + label + '-label').stop(true, true).hide("slow");
+        //    }
+        //);
 
         //// CSS Animation
         //var shipLarge = $("#home #ship-pink-large");
@@ -252,8 +258,8 @@ $(document).ready(function() {
         //var t3P = new TimelineMax({repeat:-1, yoyo:true});
         //t3P.to(shipSmall, 2, {css:{left:smallXpos+2, top:smallYpos-13}, ease:Power0.easeIn});
         //t3P.to(shipSmall, 2.4, {css:{left:smallXpos, top:smallYpos}, ease:Power0.easeIn});
-        //
-        //// CSS Animation
+
+        // CSS Animation
         //var smallPinkShip = $("#small-pink-ship");
         //var smallPinkShipPosition = smallPinkShip.position();
         //var smallPinkShipXpos = smallPinkShipPosition.left;
@@ -272,71 +278,71 @@ $(document).ready(function() {
         //
         //var browserWidth = $(document).width();
         //var planetDestination = browserWidth + 150;
-        //
-        //// Blue Ships
-        //var shipBlueLarge = $("#blue-ships #ship-blue-large");
-        //var largeBluePosition = shipBlueLarge.position();
-        //var largeBlueXpos = largeBluePosition.left;
-        //var largeBlueYpos = largeBluePosition.top;
-        //
-        //var shipBlueMedium = $("#blue-ships #ship-blue-medium");
-        //var mediumBluePosition = shipBlueMedium.position();
-        //var mediumBlueXpos = mediumBluePosition.left;
-        //var mediumBlueYpos = mediumBluePosition.top;
-        //
-        //var shipBlueSmall = $("#blue-ships #ship-blue-small");
-        //var smallBluePosition = shipBlueSmall.position();
-        //var smallBlueXpos = smallBluePosition.left;
-        //var smallBlueYpos = smallBluePosition.top;
-        //
-        //var shipsBlueSmall = $("#ships-blue-small");
-        //var shipsBlueSmallPosition = shipsBlueSmall.position();
-        //var shipsBlueSmallXpos = shipsBlueSmallPosition.left;
-        //var shipsBlueSmallYpos = shipsBlueSmallPosition.top;
-        //
-        //var boosterBlueLargeF1 = $("#blue-ships #ship-blue-large .booster-f1");
-        //boosterBlueLargeF1Position = boosterBlueLargeF1.position();
-        //TweenMax.to(boosterBlueLargeF1, 1, {css:{opacity: 0.5, left: boosterBlueLargeF1Position.left, top: boosterBlueLargeF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var boosterBlueLargeF2 = $("#blue-ships #ship-blue-large .booster-f2");
-        //boosterBlueLargeF2Position = boosterBlueLargeF2.position();
-        //TweenMax.to(boosterBlueLargeF2, 0.1, {css:{opacity: 0, left: boosterBlueLargeF2Position.left, top: boosterBlueLargeF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var boosterBlueMediumF1 = $("#blue-ships #ship-blue-medium .booster-f1");
-        //boosterBlueMediumF1Position = boosterBlueMediumF1.position();
-        //TweenMax.to(boosterBlueMediumF1, 1, {css:{opacity: 0.5, left: boosterBlueMediumF1Position.left, top: boosterBlueMediumF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var boosterBlueMediumF2 = $("#blue-ships #ship-blue-medium .booster-f2");
-        //boosterBlueMediumF2Position = boosterBlueMediumF2.position();
-        //TweenMax.to(boosterBlueMediumF2, 0.1, {css:{opacity: 0, left: boosterBlueMediumF2Position.left, top: boosterBlueMediumF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var boosterBlueSmallF1 = $("#blue-ships #ship-blue-small .booster-f1");
-        //boosterBlueSmallF1Position = boosterBlueSmallF1.position();
-        //TweenMax.to(boosterBlueSmallF1, 2, {css:{opacity: 0.1, left: boosterBlueSmallF1Position.left, top: boosterBlueSmallF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var boosterBlueSmallF2 = $("#blue-ships #ship-blue-small .booster-f2");
-        //boosterBlueSmallF2Position = boosterBlueSmallF2.position();
-        //TweenMax.to(boosterBlueSmallF2, 0.1, {css:{opacity: 0, left: boosterBlueSmallF2Position.left, top: boosterBlueSmallF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
-        //
-        //var t1B = new TimelineMax({repeat:-1, yoyo:true});
-        //
-        //t1B.to(shipBlueLarge, 1, {css:{left:largeBlueXpos+5, top:largeBlueYpos-10}, ease:Power0.easeIn});
-        //t1B.to(shipBlueLarge, 1, {css:{left:largeBlueXpos, top:largeBlueYpos}, ease:Power0.easeInOut});
-        //
-        //var t2B = new TimelineMax({repeat:-1, yoyo:true});
-        //
-        //t2B.to(shipBlueMedium, 2, {css:{left:mediumBlueXpos+7, top:mediumBlueYpos-15}, ease:Power0.easeIn});
-        //t2B.to(shipBlueMedium, 2, {css:{left:mediumBlueXpos, top:mediumBlueYpos}, ease:Power0.easeInOut});
-        //
-        //var t3B = new TimelineMax({repeat:-1, yoyo:true});
-        //
-        //t3B.to(shipBlueSmall, 3, {css:{left:smallBlueXpos+2, top:smallBlueYpos-13}, ease:Power0.easeIn});
-        //t3B.to(shipBlueSmall, 3, {css:{left:smallBlueXpos, top:smallBlueYpos}, ease:Power0.easeIn});
-        //
-        //
-        //var tSB = new TimelineMax({repeat:-1, yoyo:true});
-        //tSB.to(shipsBlueSmall, 10, {css:{scale: 0.90}, ease:Linear.easeNone});
-        //
+
+        // Blue Ships
+        var shipBlueLarge = $("#blue-ships #ship-blue-large");
+        var largeBluePosition = shipBlueLarge.position();
+        var largeBlueXpos = largeBluePosition.left;
+        var largeBlueYpos = largeBluePosition.top;
+
+        var shipBlueMedium = $("#blue-ships #ship-blue-medium");
+        var mediumBluePosition = shipBlueMedium.position();
+        var mediumBlueXpos = mediumBluePosition.left;
+        var mediumBlueYpos = mediumBluePosition.top;
+
+        var shipBlueSmall = $("#blue-ships #ship-blue-small");
+        var smallBluePosition = shipBlueSmall.position();
+        var smallBlueXpos = smallBluePosition.left;
+        var smallBlueYpos = smallBluePosition.top;
+
+        var shipsBlueSmall = $("#ships-blue-small");
+        var shipsBlueSmallPosition = shipsBlueSmall.position();
+        var shipsBlueSmallXpos = shipsBlueSmallPosition.left;
+        var shipsBlueSmallYpos = shipsBlueSmallPosition.top;
+
+        var boosterBlueLargeF1 = $("#blue-ships #ship-blue-large .booster-f1");
+        boosterBlueLargeF1Position = boosterBlueLargeF1.position();
+        TweenMax.to(boosterBlueLargeF1, 1, {css:{opacity: 0.5, left: boosterBlueLargeF1Position.left, top: boosterBlueLargeF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var boosterBlueLargeF2 = $("#blue-ships #ship-blue-large .booster-f2");
+        boosterBlueLargeF2Position = boosterBlueLargeF2.position();
+        TweenMax.to(boosterBlueLargeF2, 0.1, {css:{opacity: 0, left: boosterBlueLargeF2Position.left, top: boosterBlueLargeF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var boosterBlueMediumF1 = $("#blue-ships #ship-blue-medium .booster-f1");
+        boosterBlueMediumF1Position = boosterBlueMediumF1.position();
+        TweenMax.to(boosterBlueMediumF1, 1, {css:{opacity: 0.5, left: boosterBlueMediumF1Position.left, top: boosterBlueMediumF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var boosterBlueMediumF2 = $("#blue-ships #ship-blue-medium .booster-f2");
+        boosterBlueMediumF2Position = boosterBlueMediumF2.position();
+        TweenMax.to(boosterBlueMediumF2, 0.1, {css:{opacity: 0, left: boosterBlueMediumF2Position.left, top: boosterBlueMediumF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var boosterBlueSmallF1 = $("#blue-ships #ship-blue-small .booster-f1");
+        boosterBlueSmallF1Position = boosterBlueSmallF1.position();
+        TweenMax.to(boosterBlueSmallF1, 2, {css:{opacity: 0.1, left: boosterBlueSmallF1Position.left, top: boosterBlueSmallF1Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var boosterBlueSmallF2 = $("#blue-ships #ship-blue-small .booster-f2");
+        boosterBlueSmallF2Position = boosterBlueSmallF2.position();
+        TweenMax.to(boosterBlueSmallF2, 0.1, {css:{opacity: 0, left: boosterBlueSmallF2Position.left, top: boosterBlueSmallF2Position.top}, ease:SlowMo.easeIn, repeat:-1, yoyo:true});
+
+        var t1B = new TimelineMax({repeat:-1, yoyo:true});
+
+        t1B.to(shipBlueLarge, 10, {css:{left:largeBlueXpos+5, top:largeBlueYpos-10}, ease:Power0.easeIn});
+        t1B.to(shipBlueLarge, 10, {css:{left:largeBlueXpos, top:largeBlueYpos}, ease:Power0.easeInOut});
+
+        var t2B = new TimelineMax({repeat:-1, yoyo:true});
+
+        t2B.to(shipBlueMedium, 10, {css:{left:mediumBlueXpos+7, top:mediumBlueYpos-15}, ease:Power0.easeIn});
+        t2B.to(shipBlueMedium, 10, {css:{left:mediumBlueXpos, top:mediumBlueYpos}, ease:Power0.easeInOut});
+
+        var t3B = new TimelineMax({repeat:-1, yoyo:true});
+
+        t3B.to(shipBlueSmall, 10, {css:{left:smallBlueXpos+30, top:smallBlueYpos-13}, ease:Power0.easeIn});
+        t3B.to(shipBlueSmall, 10, {css:{left:smallBlueXpos, top:smallBlueYpos}, ease:Power0.easeIn});
+
+
+        var tSB = new TimelineMax({repeat:-1, yoyo:true});
+        tSB.to(shipsBlueSmall, 10, {css:{scale: 0.90}, ease:Linear.easeNone});
+
         ////pre loader animation
         //var formPreloader = $("#form-preloader");
         //TweenMax.to(formPreloader, 1, { css:{rotation: 360}, ease:Linear.easeNone, repeat:-1});
