@@ -1,0 +1,25 @@
+::-webkit-input-placeholder { /* WebKit browsers */
+	color:    #494949;
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:    #494949;
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:    #494949;
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color:    #494949;
+	font-size: 14px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
